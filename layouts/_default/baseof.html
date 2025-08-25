@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    {{ partial "meta.html" . }}
+  </head>
+  <body>
+    <div class="body">
+      <div class="body-content">
+        {{ block "main" . }}
+        {{ end }}
+      </div>
+    </div>
+  </body>
+</html>
