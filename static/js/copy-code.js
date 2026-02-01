@@ -9,6 +9,7 @@ function addCopyButtons(clipboard) {
         button.type = "button";
         button.innerText = "";
         button.innerHTML = copyIcon;
+        button.title = "Copy";
 
         button.addEventListener("click", function () {
 
