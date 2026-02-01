@@ -1,6 +1,6 @@
 {{ range .Headings }}
   {{ if and (ge .Level site.Params.toc.startLevel) (le .Level site.Params.toc.endLevel) }}
-    <div><a class="toc-level-{{ .Level }}" href="#{{ .ID }}">{{ .Title | htmlUnescape }}</a></div>
+    <div><a class="toc-level-{{ .Level }} toc-link" href="#{{ .ID }}">{{ .Title | htmlUnescape }}</a></div>
   {{ end }}
   {{ partial "table-of-content-level.html" . }}
 {{ end }}
