@@ -1,0 +1,21 @@
+{{ if (.Params.toc) }}
+<div id="toc" class="window">
+  <input type="checkbox" id="toc-toggle" checked/>
+  <div class="toc-title window-title-bar">
+    <div class="window-title-bar-title">
+      Content
+    </div>
+    <div class="window-title-bar-buttons">
+      <label for="toc-toggle" class=" window-title-bar-button">
+        <img id="toc-icon-maximize" src="/svg/icons/maximize.svg" alt="Maximize">
+        <img id="toc-icon-minimize" src="/svg/icons/minimize.svg" alt="Minimize">
+      </label>
+    </div>
+  </div>
+  <div class="toc-content window-body">
+    {{ with .Fragments }}
+      {{ partial "table-of-content-level.html" . }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

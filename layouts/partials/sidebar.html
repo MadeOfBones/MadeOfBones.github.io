@@ -1,0 +1,15 @@
+<aside class="sidebar hide-on-mobile">
+  <div class="sidebar-header">
+  </div>
+  <nav class="sidebar-nav">
+    <ul class="sidebar-nav-list">
+    {{- range site.Menus.main }}
+      <li class="sidebar-nav-item"><a href="{{ .URL }}">
+        {{ .Name }}
+      </a></li>
+    {{- end }}
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+  </div>
+</aside>

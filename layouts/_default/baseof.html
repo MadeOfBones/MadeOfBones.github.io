@@ -5,11 +5,13 @@
     {{ partial "meta.html" . }}
   </head>
   <body>
+    {{ partial "sidebar.html" . }}
     <div class="body">
       <div class="body-content">
         {{ block "main" . }}
         {{ end }}
       </div>
+      {{ partial "monitor-frame.html" . }}
     </div>
   </body>
 </html>

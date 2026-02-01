@@ -1,0 +1,9 @@
+{{ range .Headings }}
+  {{ if and (ge .Level site.Params.toc.startLevel) (le .Level site.Params.toc.endLevel) }}
+    <div>
+      <div class="toc-link-hover">></div>
+      <a class="toc-level-{{ .Level }} toc-link" href="#{{ .ID }}">{{ .Title | htmlUnescape }}</a>
+    </div>
+  {{ end }}
+  {{ partial "table-of-content-level.html" . }}
+{{ end }}
