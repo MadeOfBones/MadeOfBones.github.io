@@ -1,0 +1,7 @@
+{{ if (.Params.toc) }}
+<div id="toc">
+  {{ with .Fragments }}
+    {{ partial "table-of-content-level.html" . }}
+  {{ end }}
+</div>
+{{ end }}

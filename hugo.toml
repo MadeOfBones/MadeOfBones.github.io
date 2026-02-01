@@ -1,3 +1,38 @@
 baseURL = 'https://MadeOfBones.github.io/'
 languageCode = 'en-us'
 title = 'Made Of Bones'
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 20
+  [[menus.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 30
+
+[markup]
+defaultMarkdownHandler = "goldmark"
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.parser]
+    [markup.goldmark.parser.attribute]
+      block = true
+      title = true
+  [markup.highlight]
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = false
+    style = 'solarized-dark256'
+    tabWidth = 4
+    hl_inline = false
+
+[params]
+  [params.toc]
+    startLevel = 2
+    endLevel = 6
