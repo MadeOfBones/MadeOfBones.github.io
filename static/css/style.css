@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "IBM_VGA_8x16";
+  src: url("/woff/Web437_IBM_VGA_8x16.woff");
+}
 
 :root{
   /*  color palette  */
@@ -303,6 +307,11 @@ blockquote p, blockquote blockquote{
   display: none;
 }
 
+#toc a{
+  font-style: normal;
+  font-weight: normal;
+}
+
 .toc-content{
   padding: 0.5rem 0.5rem;
   display: grid;
@@ -313,38 +322,39 @@ blockquote p, blockquote blockquote{
   scrollbar-gutter: stable;
 }
 
-.toc-link:hover{
-  border-bottom: 2px solid var(--color-accent);
+.toc-link-hover{
+  display: none;
+  color: var(--color-accent);
+}
+
+.toc-link-hover:has(+ .toc-link:hover){
+  display: inline;
+  position: fixed;
+  transform: translate(-0.25rem);
 }
 
 .toc-level-1{
-  margin-left: 0;
-  font-size: 1.1rem;
+  margin-left: 0rem;
 }
 
 .toc-level-2{
   margin-left: 0.5rem;
-  font-size: 1.1rem;
 }
 
 .toc-level-3{
   margin-left: 1rem;
-  font-size: 1rem;
 }
 
 .toc-level-4{
   margin-left: 1.5rem;
-  font-size: 0.9rem;
 }
 
 .toc-level-5{
   margin-left: 2rem;
-  font-size: 0.9rem;
 }
 
 .toc-level-6{
   margin-left: 2.5rem;
-  font-size: 0.9rem;
 }
 
 .toc-content > div{
@@ -394,6 +404,10 @@ blockquote p, blockquote blockquote{
 
 .window{
   border: 2px outset var(--color-light);
+  font-family: "IBM_VGA_8x16";
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
 }
 
 .window-title-bar{
