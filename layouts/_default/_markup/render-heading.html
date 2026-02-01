@@ -1,0 +1,7 @@
+<h{{ .Level }} id="{{ .Anchor }}" {{- with .Attributes.class }} class="{{ . }}" {{- end }}>
+  {{ if ge .Level 2 }}
+  <a href="#{{ .Anchor }}">{{ .Text }}</a>
+  {{ else }}
+  {{ .Text }}
+  {{ end }}
+</h{{ .Level }}>

@@ -96,7 +96,7 @@ Tabs with 4 spaces are needed.
 
 ### Blocks of code
 
-{{< highlight cs "hl_lines=5 16-19" >}}
+```cs { hl_lines=[5 "16-19"] }
 using UnityEngine;
 
 namespace MOB.MarkdownTest
@@ -118,7 +118,7 @@ namespace MOB.MarkdownTest
         }
     }
 }
-{{< /highlight >}}
+```
 
 ### Inline code
 

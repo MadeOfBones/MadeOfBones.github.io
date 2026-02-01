@@ -10,6 +10,9 @@
   --color-text-normal: var(--color-light);
   --color-text-link: var(--color-accent);
 
+  /*  transition  */
+  --transition-quick: 0.25s;
+
   /*  blockquote  */
   --blockquote-font-size: 0.875rem;
   --blockquote-margin: 1rem 3rem;
@@ -43,6 +46,17 @@ body{
   color: var(--color-text-normal);
 }
 
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+  color: var(--color-text-normal);
+  text-decoration: none;
+  font-style: normal;
+  transition-duration: var(--transition-quick);
+}
+
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
+  color: var(--color-text-link);
+}
+
 h1{
   margin: 1rem 0.5rem 0.5rem;
   font-size: 2.5rem;
@@ -66,15 +80,24 @@ hr{
   height: 2px;
 }
 
-p{
-  margin: 0.5rem 1.5rem;
-}
-
 a{
   color: var(--color-text-link);
   text-decoration: none;
   font-style: italic;
   font-weight: bolder;
+}
+
+p{
+  margin: 0.5rem 1.5rem;
+}
+
+/*  ------------------------------------------------  */
+/*  .link  */
+
+.link svg{
+  translate: -2px 2px;
+  width: 1rem;
+  height: 1rem;
 }
 
 /*  ------------------------------------------------  */
@@ -125,11 +148,32 @@ blockquote p, blockquote blockquote{
 }
 
 /*  ------------------------------------------------  */
-/*  .highlight  */
+/*  .highlight and .copy-code-button  */
 
-.highlight{
-  margin: 0 1rem 1rem 1rem;
+.highlight pre:has(code){
+  margin: 0 2rem 1rem 2rem;
   border: 1px solid var(--color-accent);
+}
+
+.copy-code-button{
+  float: right;
+  width: 2rem;
+  height: 2rem;
+  translate: -2rem;
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  opacity: 50%;
+  transition-duration: var(--transition-quick);
+}
+
+.copy-code-button:hover{
+  opacity: 100%;
+}
+
+.copy-code-button svg{
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
 }
 
 /*  ------------------------------------------------  */
@@ -172,7 +216,7 @@ blockquote p, blockquote blockquote{
 .sidebar-nav-item a{
   border-radius: 2px;
   transition: 0.15s;
-  border: 2px outset;
+  border: 2px outset var(--color-accent);
   padding: 4px 12px;
   flex-grow: 1;
 }
