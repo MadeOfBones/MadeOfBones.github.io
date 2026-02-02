@@ -2,6 +2,8 @@
   <h1>{{ .Params.Title }}</h1>
   <p>{{ .Date.Format "2006-02-01"}}</p>
   {{ .Content }}
+  {{ partial "threejs-import.html" . }}
   {{ partial "table-of-content.html" . }}
   {{ partial "copy-code.html" . }}
 {{ end }}
+

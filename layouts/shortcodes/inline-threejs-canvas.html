@@ -1,0 +1,29 @@
+{{ $id := .Get "id" }}
+{{ $title:= .Get "title" }}
+{{ $src := .Get "src" }}
+{{ $w := .Get "w" }}
+{{ $h := .Get "h" }}
+
+<div class="inline-threejs-window">
+  <div class="window">
+    <div class="window-title-bar">
+      <div class="window-title-bar-title">
+        {{ $title }}
+      </div>
+    </div>
+    {{ if and (isset .Params "w") (isset .Params "h")}}
+    <div class="inline-threejs-window-container window-body" style="width: {{ $w }}; height: {{ $h }};">
+    {{ else if (isset .Params "w") }}
+    <div class="inline-threejs-window-container window-body" style="width: {{ $w }};">
+    {{ else if (isset .Params "h") }}
+    <div class="inline-threejs-window-container window-body" style="height: {{ $h }};">
+    {{ else }}
+    <div class="inline-threejs-window-container window-body">
+    {{ end }}
+      <canvas id="threejs-window-canvas-{{ $id }}" class="threejs-window-canvas"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Load the script -->
+<script type="module" src="{{ $src }}"></script>

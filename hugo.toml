@@ -39,3 +39,11 @@ defaultMarkdownHandler = "goldmark"
   [params.toc]
     startLevel = 2
     endLevel = 6
+
+[module]
+  [[module.mounts]]
+    source = "node_modules/three"
+    target = "static/three"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
