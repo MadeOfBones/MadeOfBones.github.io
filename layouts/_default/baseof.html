@@ -3,7 +3,12 @@
 <html>
   <head>
     {{ partial "meta.html" . }}
-    {{ partial "threejs-import.html" . }}
+    {{ if .Params.threejs }}
+      {{ partialCached "threejs-import.html" . }}
+    {{ end }}
+    {{ if .Params.math }}
+      {{ partialCached "math-import.html" . }}
+    {{ end }}
   </head>
   <body>
     {{ partial "sidebar.html" . }}

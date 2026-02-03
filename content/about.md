@@ -12,4 +12,6 @@ Coming soon...
 
 ## Tools and Libraries
 
-- [Three.js](https://threejs.org/)
+- [HUGO](https://gohugo.io/) Framework to build the website
+- [Three.js](https://threejs.org/) For all the 3D stuff
+- [MathJax](https://www.mathjax.org/) For math equations
