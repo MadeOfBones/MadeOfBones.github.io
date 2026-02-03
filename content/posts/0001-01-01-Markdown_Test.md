@@ -1,10 +1,10 @@
-+++
-date = '0001-01-01T14:23:00-04:00'
-draft = true
-toc = true
-title = 'Markdown Test'
-threejs = true
-+++
+---
+date: 0001-01-01T14:23:00-04:00
+title: Markdown Test
+draft: true
+toc: true
+threejs: true
+---
 
 ## Headers
 
@@ -167,6 +167,6 @@ Here's a longer one[^bignote].
 
 ## ThreeJS View
 
-{{< inline-threejs-canvas id="test" src="/js/MarkdownTest/threejs-test.js" title="Test inline treejs container" w="500px" h="500px">}}
+{{< threejs-inline-canvas id="test" src="/js/Posts/MarkdownTest/threejs-test.js" title="Test inline treejs container" w="500px" h="500px">}}
 
 Some text after.

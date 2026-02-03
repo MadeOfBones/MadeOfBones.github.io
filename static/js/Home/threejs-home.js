@@ -1,10 +1,11 @@
 import * as THREE from 'three';
-import utility from "/js/threejs/threejs-window-canvas.js";
+import utility from "/js/threejs/threejs-canvas-utility.js";
 
-let {scene, renderer} = utility.setupCanvasWindow("#threejs-window-canvas-test", 0xEEEEEE, 1.0);
+let canvas = utility.addFullscreenThreejsCanvas();
+let {scene, renderer} = utility.setupCanvasWindow(canvas, 0xEEEEEE, 1.0);
 
 // Create a camera
-const camera = new THREE.PerspectiveCamera(20, 4/3, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(30, 4/3, 0.1, 1000);
 camera.position.z = 5;
 
 // Create a cube
