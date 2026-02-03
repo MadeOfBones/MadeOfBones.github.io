@@ -1,9 +1,10 @@
-+++
-date = '0001-01-01T14:23:00-04:00'
-draft = true
-toc = true
-title = 'Markdown Test'
-+++
+---
+date: 0001-01-01T14:23:00-04:00
+title: Markdown Test
+draft: true
+toc: true
+threejs: true
+---
 
 ## Headers
 
@@ -162,4 +163,10 @@ Here's a longer one[^bignote].
 	
 	`{ my code }`
 	
-	Note that you can place the footnote anywhere you want in your article
+	Note that you can place the footnote anywhere you want in your article.
+
+## ThreeJS View
+
+{{< threejs-inline-canvas id="test" src="/js/Posts/MarkdownTest/threejs-test.js" title="Test inline treejs container" w="500px" h="500px">}}
+
+Some text after.

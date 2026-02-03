@@ -52,6 +52,10 @@
   --monitor-frame-overlap: calc(var(--monitor-frame-outer-size) - var(--monitor-frame-inner-size));
   --monitor-frame-clip-path-left: shape(from 0 0, line to 100% 0, curve to 100% 100% with 50% 50%, line to 0 100%);
   --monitor-frame-clip-path-right: shape(from 100% 0, line to 0 0, curve to 0 100% with 50% 50%, line to 100% 100%);
+
+  /* inline threejs window */
+  --inline-threejs-window-width: 600px;
+  --inline-threejs-window-height: 450px;
 }
 
 * {
@@ -290,7 +294,6 @@ blockquote p, blockquote blockquote{
   padding: 1rem;
   height: 100%;
   overflow-y: auto;
-  scrollbar-gutter: stable;
 }
 
 /*  ------------------------------------------------  */
@@ -563,6 +566,39 @@ blockquote p, blockquote blockquote{
 
 .monitor-frame-inner-bottom{
   background: linear-gradient(90deg, var(--color-frame-mid) 10%, var(--color-frame-mid-light), var(--color-frame-mid) 55%);
+}
+
+/*  ------------------------------------------------  */
+/*  threejs  */
+
+.inline-threejs-window{
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.inline-threejs-window-container{
+  width: var(--inline-threejs-window-width);
+  height: var(--inline-threejs-window-height);
+}
+
+.threejs-window-canvas{
+  width: 100%;
+  height: 100%;
+}
+
+#threejs-fullscreen-container{
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  height: 100%;
+}
+
+#threejs-fullscreen-canvas{
+  width: 100%;
+  height: 100%;
 }
 
 /*  ------------------------------------------------  */
