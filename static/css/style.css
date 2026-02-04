@@ -615,7 +615,7 @@ blockquote p, blockquote blockquote{
   .body-frame{
     left: 0;
   }
-  .monitor-frame-outer{
+  .monitor-frame-outer, #threejs-fullscreen-container{
     left: 0;
     width: 100%;
   }

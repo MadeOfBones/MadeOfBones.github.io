@@ -17,6 +17,9 @@
         {{ block "main" . }}
         {{ end }}
       </div>
+      {{ if .Params.threejs }}
+        {{ partial "threejs-fullscreen.html" . }}
+      {{ end }}
       {{ partial "monitor-frame.html" . }}
     </div>
   </body>
