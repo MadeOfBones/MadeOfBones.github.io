@@ -18,6 +18,12 @@ title = 'Made Of Bones'
 
 [markup]
 defaultMarkdownHandler = "goldmark"
+  [markup.goldmark.extensions]
+    [markup.goldmark.extensions.passthrough]
+      enable = true
+      [markup.goldmark.extensions.passthrough.delimiters]
+        block = [['\[', '\]'], ['$$', '$$']]
+        inline = [['\(', '\)']]
   [markup.goldmark.renderer]
     unsafe = true
   [markup.goldmark.parser]
@@ -36,6 +42,7 @@ defaultMarkdownHandler = "goldmark"
     hl_inline = false
 
 [params]
+  math = true
   [params.toc]
     startLevel = 2
     endLevel = 6

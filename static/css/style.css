@@ -21,6 +21,7 @@
   --color-window-title-dark: #000080;
   --color-window-title-light: #1084d0;
   --color-window-body: var(--color-mid-dark);
+  --color-window-button: var(--color-mid-dark);
 
   --color-text-normal: var(--color-light);
   --color-text-link: var(--color-accent);
@@ -199,8 +200,8 @@ blockquote p, blockquote blockquote{
 }
 
 .copy-code-button svg{
-  width: 1rem;
-  height: 1rem;
+  width: 100%;
+  height: 100%;
   color: var(--color-accent);
 }
 
@@ -452,10 +453,10 @@ blockquote p, blockquote blockquote{
 
 .window-title-bar-button > svg{
   margin: 0px;
-  padding: 1px;
   width: 100%;
   height: 100%;
   display: flex;
+  color: var(--color-window-button);
 }
 
 .window-title-bar-button:active{
@@ -615,7 +616,7 @@ blockquote p, blockquote blockquote{
   .body-frame{
     left: 0;
   }
-  .monitor-frame-outer{
+  .monitor-frame-outer, #threejs-fullscreen-container{
     left: 0;
     width: 100%;
   }

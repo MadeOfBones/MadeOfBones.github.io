@@ -6,9 +6,9 @@
       Content
     </div>
     <div class="window-title-bar-buttons">
-      <label for="toc-toggle" class=" window-title-bar-button">
-        <img id="toc-icon-maximize" src="/svg/icons/maximize.svg" alt="Maximize">
-        <img id="toc-icon-minimize" src="/svg/icons/minimize.svg" alt="Minimize">
+      <label for="toc-toggle" class="window-title-bar-button">
+        {{ partial "icons/maximize.html" (dict "id" "toc-icon-maximize") }}
+        {{ partial "icons/minimize.html" (dict "id" "toc-icon-minimize") }}
       </label>
     </div>
   </div>

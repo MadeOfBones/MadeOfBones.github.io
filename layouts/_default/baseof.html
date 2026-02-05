@@ -3,16 +3,24 @@
 <html>
   <head>
     {{ partial "meta.html" . }}
-    {{ partial "threejs-import.html" . }}
+    {{ if .Params.threejs }}
+      {{ partialCached "threejs-import.html" . }}
+    {{ end }}
+    {{ if .Params.math }}
+      {{ partialCached "math-import.html" . }}
+    {{ end }}
   </head>
   <body>
-    {{ partial "sidebar.html" . }}
+    {{ partialCached "sidebar.html" . }}
     <div class="body">
+      {{ if .Params.threejsfs }}
+        {{ partial "threejs-fullscreen.html" . }}
+      {{ end }}
       <div class="body-content">
         {{ block "main" . }}
         {{ end }}
       </div>
-      {{ partial "monitor-frame.html" . }}
+      {{ partialCached "monitor-frame.html" . }}
     </div>
   </body>
 </html>
