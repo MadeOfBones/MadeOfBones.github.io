@@ -11,16 +11,16 @@
     {{ end }}
   </head>
   <body>
-    {{ partial "sidebar.html" . }}
+    {{ partialCached "sidebar.html" . }}
     <div class="body">
+      {{ if .Params.threejsfs }}
+        {{ partial "threejs-fullscreen.html" . }}
+      {{ end }}
       <div class="body-content">
         {{ block "main" . }}
         {{ end }}
       </div>
-      {{ if .Params.threejs }}
-        {{ partial "threejs-fullscreen.html" . }}
-      {{ end }}
-      {{ partial "monitor-frame.html" . }}
+      {{ partialCached "monitor-frame.html" . }}
     </div>
   </body>
 </html>
