@@ -1,6 +1,11 @@
 {{ define "main" }}
   <h1>{{ .Params.Title }}</h1>
-  <p>{{ .Date.Format "2006-02-01"}}</p>
+  <p>
+    Published {{ .Date.Format "2006-01-02"}}
+    {{ if .Params.lastedit }}
+      - Last Edit {{ .Date.Format "2006-01-02"}}
+    {{ end }}
+  </p>
   {{ .Content }}
   {{ partial "table-of-content.html" . }}
   {{ partial "copy-code.html" . }}
