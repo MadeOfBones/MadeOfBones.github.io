@@ -87,7 +87,7 @@ Tabs with 4 spaces are needed.
 > 
 > Here's some example code:
 > 
-> ```cs { title="Test" }
+> ```cs { title="Test1" }
 > public Vector3 GetSomeVector()
 > {
 >     return new Vector3(1.0f, 0.0f, 1.0f);
@@ -98,7 +98,7 @@ Tabs with 4 spaces are needed.
 
 ### Blocks of code
 
-```cs { hl_lines=[5 "16-19"] }
+```cs { title="Test2" id="code-test2" hl_lines=[5 "16-19"] }
 using UnityEngine;
 
 namespace MOB.MarkdownTest

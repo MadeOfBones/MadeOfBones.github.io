@@ -1,0 +1,19 @@
+<div class="window code-window" {{- with .Attributes.id }}id="{{ . }}"{{- end }}>
+  <div class="window-title-bar">
+    <div class="window-title-bar-title">
+      {{- with .Attributes.title }}{{ . }}{{- end }}
+    </div>
+  </div>
+  <div class="window-toolbar">
+    <input class="window-toolbar-button copy-code-button" type="button" value="Copy" />
+  </div>
+  <div class="window-body code-window-body">
+    <div class="code-window-content">
+      {{ $result := transform.HighlightCodeBlock . }}
+      {{ $result.Wrapped }}
+    </div>
+    <div class="code-window-overlay">
+      <div class="code-window-overlay-swipe code-window-overlay-swipe"></div>
+    </div>
+  </div>
+</div>
