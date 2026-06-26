@@ -189,35 +189,6 @@ blockquote p, blockquote blockquote{
   overflow: hidden;
 }
 
-.code-window-overlay{
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0%;
-
-  background-image:
-    url(/images/noise64.png);
-  filter: contrast(500%);
-  image-rendering: pixelated;
-  background-size: 256px;
-  mix-blend-mode: color-dodge;
-
-  pointer-events: none;
-  display: none;
-}
-
-.code-window-overlay-swipe{
-  position: inherit;
-  height: 100%;
-  width: 300%;
-  top: 0%;
-  left: -200%;
-  image-rendering: pixelated;
-  mix-blend-mode: hard-light;
-  background-image:
-    linear-gradient(90deg, black 20%, var(--color-accent) 60%, black 70%);
-}
-
 /*  ------------------------------------------------  */
 /*  scrollbar  */
 

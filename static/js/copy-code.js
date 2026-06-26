@@ -2,23 +2,6 @@ function setupCopyCodeButton(clipboard, codeWindow){
     //Fetch elements
     const copyCodeButton = codeWindow.querySelector(".copy-code-button");
     const codeBlock = codeWindow.querySelector("pre > code");
-    const codeWindowOverlay = codeWindow.querySelector(".code-window-overlay");
-    const codeWindowOverlaySwipe = codeWindow.querySelector(".code-window-overlay-swipe");
-    
-    //Setup animtion
-    const animationKeyframes = new KeyframeEffect(
-        codeWindowOverlaySwipe,
-        [{ left: "-200%"}, { left: "0%"}],
-        {
-            fill: "forwards",
-            easing: "ease-out",
-            duration: 500
-        }
-    );
-    const animation = new Animation(animationKeyframes);
-    animation.addEventListener("finish", (event) => {
-        codeWindowOverlay.style.display = 'none';
-    });
 
     //Setup click action
     copyCodeButton.addEventListener("click", function () {
@@ -33,9 +16,6 @@ function setupCopyCodeButton(clipboard, codeWindow){
             }
         });
         clipboard.writeText(textContent);
-        codeWindowOverlay.style.display = 'inline';
-        animation.cancel();
-        animation.play();
     });
 }
 
