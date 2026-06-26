@@ -8,23 +8,32 @@ let {scene, renderer} = utility.setupCanvasWindow(canvas, 0xEEEEEE, 1.0);
 const camera = new THREE.PerspectiveCamera(20, 4/3, 0.1, 1000);
 camera.position.z = 5;
 
+// Create a clock for set FPS
+const clock = new THREE.Clock();
+const TARGET_FRAME_TIME = 1/60;
+let dt = 0;
+
 // Create a cube
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true});
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
-function animation(time)
+function update(time)
 {
     utility.resizeCanvasToDisplaySize(renderer, camera);
+    requestAnimationFrame(update);
 
-    // Rotate the cube
-    const speed = 0.001;
-    cube.rotation.x = speed * time;
-    cube.rotation.y = speed * time;
+    dt += clock.getDelta();
+    if(dt > TARGET_FRAME_TIME){
+        // Rotate the cube
+        const speed = 0.5;
+        cube.rotation.x += speed * dt;
+        cube.rotation.y += speed * dt;
 
-    renderer.render(scene, camera);
-    requestAnimationFrame(animation);
+        dt = dt % TARGET_FRAME_TIME;
+        renderer.render(scene, camera);
+    }
 }
 
-requestAnimationFrame(animation);
+requestAnimationFrame(update);
