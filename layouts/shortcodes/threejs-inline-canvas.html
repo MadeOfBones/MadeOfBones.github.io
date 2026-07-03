@@ -11,19 +11,20 @@
         {{ $title }}
       </div>
     </div>
-    {{ if and (isset .Params "w") (isset .Params "h")}}
-    <div class="inline-threejs-window-container window-body" style="width: {{ $w }}; height: {{ $h }};">
-    {{ else if (isset .Params "w") }}
-    <div class="inline-threejs-window-container window-body" style="width: {{ $w }};">
-    {{ else if (isset .Params "h") }}
-    <div class="inline-threejs-window-container window-body" style="height: {{ $h }};">
-    {{ else }}
-    <div class="inline-threejs-window-container window-body">
-    {{ end }}
-      <canvas id="threejs-window-canvas-{{ $id }}" class="threejs-window-canvas"></canvas>
+    <div class="window-body">
+      {{ if and (isset .Params "w") (isset .Params "h")}}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="width: {{ $w }}; height: {{ $h }};">
+      {{ else if (isset .Params "w") }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="width: {{ $w }};">
+      {{ else if (isset .Params "h") }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="height: {{ $h }};">
+      {{ else }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content">
+      {{ end }}
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Load the script -->
-<script type="module" src="{{ $src }}"></script>
+<script type="module" src="{{ $src }}" defer></script>

@@ -482,6 +482,11 @@ blockquote p, blockquote blockquote{
   background-color: var(--color-window-body);
 }
 
+.window-content{
+  width: 100%;
+  height: 100%;
+}
+
 /*  ------------------------------------------------  */
 /*  .monitor-frame  */
 
@@ -593,14 +598,9 @@ blockquote p, blockquote blockquote{
   overflow: hidden;
 }
 
-.inline-threejs-window-container{
+.threejs-content{
   width: var(--inline-threejs-window-width);
   height: var(--inline-threejs-window-height);
-}
-
-.threejs-window-canvas{
-  width: 100%;
-  height: 100%;
 }
 
 #threejs-fullscreen-container{
@@ -608,11 +608,6 @@ blockquote p, blockquote blockquote{
   top: 0;
   left: var(--sidebar-width);
   width: calc(100% - var(--sidebar-width));
-  height: 100%;
-}
-
-#threejs-fullscreen-canvas{
-  width: 100%;
   height: 100%;
 }
 
