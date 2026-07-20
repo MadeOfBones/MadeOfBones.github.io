@@ -6,9 +6,16 @@
 
 <div class="inline-threejs-window">
   <div class="window">
-    <div class="window-title-bar">
-      <div class="window-title-bar-title">
-        {{ $title }}
+    <div class="window-title-bar-container">
+      <div class="svgfilter-layer" style="filter: url(#gradient-map-green);">
+        <div class="svgfilter-layer overlay-noise overlay-noise-white" style="filter: url(#posterize-5step);">
+          <div class="svgfilter-layer window-title-bar-background"></div>
+        </div>
+      </div>
+      <div class="window-title-bar">
+        <div class="window-title-bar-title">
+          {{ $title }}
+        </div>
       </div>
     </div>
     <div class="window-body">
