@@ -59,7 +59,7 @@
   --monitor-frame-top-height: calc(var(--monitor-outer-top-size) + var(--monitor-inner-height));
   --monitor-frame-bottom-height: calc(var(--monitor-outer-bottom-size) + var(--monitor-inner-height));
   --monitor-frame-inner-radius: 4px;
-  --monitor-frame-outer-radius: 16px;
+  --monitor-frame-outer-radius: 20px;
   --monitor-frame-left: var(--monitor-frame-width);
   --monitor-frame-right: calc(100% - var(--monitor-frame-width));
   --monitor-frame-top: var(--monitor-frame-top-height);
@@ -519,10 +519,15 @@ blockquote p, blockquote blockquote{
   left: calc(var(--sidebar-width) + var(--monitor-padding));
   width: calc(100% - var(--sidebar-width) - 2*var(--monitor-padding));
   height: calc(100% - 2*var(--monitor-padding));
+}
+
+#monitor-frame{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
   border-radius: var(--monitor-frame-outer-radius);
   overflow: hidden;
-  display: flex;
-
   clip-path:
     shape(from 0 0,       /* top left */
 
@@ -547,7 +552,6 @@ blockquote p, blockquote blockquote{
 #monitor-outer-border{
   position: absolute;
   border-image: url("../images/monitor/monitor_outer_9slice.png") 16 16 16 16 fill / 16px 16px 16px 16px;
-  background:linear-gradient(to bottom, #515151, #4C4C4C);
   width: 100%;
   height: 100%;
 }
