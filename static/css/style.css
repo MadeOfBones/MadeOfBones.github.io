@@ -41,19 +41,29 @@
   --sidebar-footer-height: 4rem;
 
   /*  .body  */
-  --body-color-bg: var(--color-mid-dark);
+  --body-color-bg: var(--color-dark);
 
   /*  #toc  */
 
   /*  scrollbar  */
   --scrollbar-width: 12px;
 
-  /*  .monitor-frame  */
-  --monitor-frame-outer-size: 40px;
-  --monitor-frame-inner-size: 16px;
-  --monitor-frame-overlap: calc(var(--monitor-frame-outer-size) - var(--monitor-frame-inner-size));
-  --monitor-frame-clip-path-left: shape(from 0 0, line to 100% 0, curve to 100% 100% with 50% 50%, line to 0 100%);
-  --monitor-frame-clip-path-right: shape(from 100% 0, line to 0 0, curve to 0 100% with 50% 50%, line to 100% 100%);
+  /*  .monitor  */
+  --monitor-padding: 4px;
+  --monitor-outer-top-size: 28px;
+  --monitor-outer-side-size: 24px;
+  --monitor-outer-bottom-size: 64px;
+  --monitor-inner-width: 48px;
+  --monitor-inner-height: 22px;
+  --monitor-frame-width: calc(var(--monitor-outer-side-size) + var(--monitor-inner-width));
+  --monitor-frame-top-height: calc(var(--monitor-outer-top-size) + var(--monitor-inner-height));
+  --monitor-frame-bottom-height: calc(var(--monitor-outer-bottom-size) + var(--monitor-inner-height));
+  --monitor-frame-inner-radius: 4px;
+  --monitor-frame-outer-radius: 16px;
+  --monitor-frame-left: var(--monitor-frame-width);
+  --monitor-frame-right: calc(100% - var(--monitor-frame-width));
+  --monitor-frame-top: var(--monitor-frame-top-height);
+  --monitor-frame-bottom: calc(100% - var(--monitor-frame-bottom-height));
 
   /* inline threejs window */
   --inline-threejs-window-width: 600px;
@@ -271,7 +281,11 @@ blockquote p, blockquote blockquote{
 .body{
   background-color: var(--body-color-bg);
   height: 100vh;
-  padding: calc(var(--monitor-frame-outer-size) - 2px);
+  padding:
+    calc(var(--monitor-frame-top-height) + var(--monitor-padding))
+    calc(var(--monitor-frame-width) + var(--monitor-padding))
+    calc(var(--monitor-frame-bottom-height) + var(--monitor-padding))
+    calc(var(--monitor-frame-width) + var(--monitor-padding));
   overflow-x: auto;
 }
 
@@ -286,8 +300,8 @@ blockquote p, blockquote blockquote{
 
 #toc{
   position: fixed;
-  top: calc(var(--monitor-frame-outer-size) + 24px);
-  right: calc(var(--monitor-frame-outer-size) + 24px);
+  top: calc(var(--monitor-frame-top-height) + 24px);
+  right: calc(var(--monitor-frame-width) + 24px);
   display: grid;
 }
 
@@ -391,7 +405,8 @@ blockquote p, blockquote blockquote{
 /*  .window  */
 
 .window{
-  border: 2px outset var(--color-window-frame);
+  position: relative;
+  border: 3px outset var(--color-window-frame);
   font-family: "IBM_VGA_8x16";
   font-size: 1rem;
   font-style: normal;
@@ -399,7 +414,7 @@ blockquote p, blockquote blockquote{
 }
 
 .window-title-bar-container{
-  height: 1.25rem;
+  height: calc(1rem + 6px);
   position: relative;
 }
 
@@ -407,7 +422,7 @@ blockquote p, blockquote blockquote{
   justify-content: space-between;
   align-items: center;
   display: flex;
-  padding: 3px 2px 3px 3px;
+  padding: 3px;
   width: 100%;
   height: 100%;
   transform: translate(0, calc(-100%));
@@ -443,9 +458,9 @@ blockquote p, blockquote blockquote{
 .window-title-bar-button{
   padding: 0;
   display: block;
-  width: 1rem;
-  height: 1rem;
-  border: 2px outset var(--color-window-frame);
+  width: calc(1rem + 2px);
+  height: calc(1rem + 2px);
+  border: 3px outset var(--color-window-frame);
   background-color: var(--color-window-frame);
   justify-content: center;
   align-content: center;
@@ -464,14 +479,14 @@ blockquote p, blockquote blockquote{
 }
 
 .window-toolbar{
-  height: 1.25rem;
+  height: calc(1rem + 6px);
   background-color: var(--color-window-frame);
 }
 
 .window-toolbar-button{
   display: block;
   background-color: var(--color-window-frame);
-  border: 2px solid var(--color-window-frame);
+  border: 3px solid var(--color-window-frame);
   justify-content: center;
   align-content: center;
 }
@@ -485,7 +500,7 @@ blockquote p, blockquote blockquote{
 }
 
 .window-body{
-  border: 2px inset var(--color-window-frame);
+  border: 3px inset var(--color-window-frame);
   background-color: var(--color-window-body);
 }
 
@@ -495,104 +510,67 @@ blockquote p, blockquote blockquote{
 }
 
 /*  ------------------------------------------------  */
-/*  .monitor-frame  */
+/*  .monitor  */
 
-.monitor-frame, .monitor-frame-outer, .monitor-frame-inner{
+#monitor{
   position: fixed;
   pointer-events: none;
+  top: var(--monitor-padding);
+  left: calc(var(--sidebar-width) + var(--monitor-padding));
+  width: calc(100% - var(--sidebar-width) - 2*var(--monitor-padding));
+  height: calc(100% - 2*var(--monitor-padding));
+  border-radius: var(--monitor-frame-outer-radius);
+  overflow: hidden;
+  display: flex;
+
+  clip-path:
+    shape(from 0 0,       /* top left */
+
+    /* outer cw */
+    line to 100% 0,     /* top right */
+    line to 100% 100%,  /* bot right */
+    line to 0 100%,     /* bot left */
+    line to 0 0,        /* top left */
+
+    /* outer ccw */
+    line to var(--monitor-frame-right) calc(var(--monitor-frame-top) + var(--monitor-frame-inner-radius)), /* top right */
+    curve to calc(var(--monitor-frame-right) - var(--monitor-frame-inner-radius)) var(--monitor-frame-top) with var(--monitor-frame-right) var(--monitor-frame-top),
+    line to calc(var(--monitor-frame-left) + var(--monitor-frame-inner-radius)) var(--monitor-frame-top), /* top left */
+    curve to var(--monitor-frame-left) calc(var(--monitor-frame-top) + var(--monitor-frame-inner-radius)) with var(--monitor-frame-left) var(--monitor-frame-top),
+    line to var(--monitor-frame-left) calc(var(--monitor-frame-bottom) - var(--monitor-frame-inner-radius)), /* bot left */
+    curve to calc(var(--monitor-frame-left) + var(--monitor-frame-inner-radius)) var(--monitor-frame-bottom) with var(--monitor-frame-left) var(--monitor-frame-bottom),
+    line to calc(var(--monitor-frame-right) - var(--monitor-frame-inner-radius)) var(--monitor-frame-bottom), /* bot right */
+    curve to var(--monitor-frame-right) calc(var(--monitor-frame-bottom) - var(--monitor-frame-inner-radius)) with var(--monitor-frame-right) var(--monitor-frame-bottom),
+    line to var(--monitor-frame-right) calc(var(--monitor-frame-top) + var(--monitor-frame-inner-radius))); /* top right */
 }
 
-.monitor-frame-outer, .monitor-frame-inner{
-  display: grid;
-  grid-template-areas:
-    "topleft top topright"
-    "left . right"
-    "bottomleft bottom bottomright";
-}
-
-.monitor-frame-outer{
-  position: fixed;
-  top: 0;
-  left: var(--sidebar-width);
-  width: calc(100% - var(--sidebar-width));
+#monitor-outer-border{
+  position: absolute;
+  border-image: url("../images/monitor/monitor_outer_9slice.png") 16 16 16 16 fill / 16px 16px 16px 16px;
+  background:linear-gradient(to bottom, #515151, #4C4C4C);
+  width: 100%;
   height: 100%;
-  grid-template-columns: var(--monitor-frame-outer-size) 1fr var(--monitor-frame-outer-size);
-  grid-template-rows: var(--monitor-frame-outer-size) 1fr var(--monitor-frame-outer-size);
 }
 
-.monitor-frame-inner{
-  position: fixed;
-  top: var(--monitor-frame-overlap);
-  left: calc(var(--sidebar-width) + var(--monitor-frame-overlap));
-  width: calc(100% - var(--sidebar-width) - 2*var(--monitor-frame-overlap));
-  height: calc(100% - 2*var(--monitor-frame-overlap));
-  grid-template-columns: var(--monitor-frame-inner-size) 1fr var(--monitor-frame-inner-size);
-  grid-template-rows: var(--monitor-frame-inner-size) 1fr var(--monitor-frame-inner-size);
+#monitor-inner-border{
+  position: absolute;
+  border-image: url("../images/monitor/monitor_inner_9slice.png") 26 52 26 52 fill / 26px 52px 26px 52px;
+  margin: var(--monitor-outer-top-size) var(--monitor-outer-side-size) var(--monitor-outer-bottom-size) var(--monitor-outer-side-size);
+  width: calc(100% - 48px);
+  height: calc(100% - 92px);
 }
 
-.monitor-frame-outer-topleft, .monitor-frame-outer-topright{
-  background-color: var(--color-frame-mid);
-}
-
-.monitor-frame-outer-top{
+#monitor-overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
   background:
-    linear-gradient(90deg, var(--color-frame-mid), var(--color-frame-light) 25%, var(--color-frame-mid));
-}
-
-.monitor-frame-outer-bottomleft, .monitor-frame-outer-bottomright{
-  background: var(--color-frame-mid-dark);
-}
-
-.monitor-frame-outer-right{
-  background: linear-gradient(180deg, var(--color-frame-mid), var(--color-frame-mid-dark) 85%);
-}
-
-.monitor-frame-outer-left{
-  background: linear-gradient(180deg, var(--color-frame-mid) 15%, var(--color-frame-mid-dark));
-}
-
-.monitor-frame-outer-left, .monitor-frame-inner-left{
-  clip-path: var(--monitor-frame-clip-path-left);
-}
-
-.monitor-frame-outer-right, .monitor-frame-inner-right{
-  clip-path: var(--monitor-frame-clip-path-right);
-}
-
-.monitor-frame-outer-bottom{
-  background: linear-gradient(90deg, var(--color-frame-mid-dark) 25%, var(--color-frame-dark) 75%, var(--color-frame-mid-dark));
-}
-
-.monitor-frame-inner-topleft{
-  background: conic-gradient(from 270deg at 100% 100%, var(--color-frame-mid-dark), var(--color-frame-dark) 90deg);
-  clip-path: circle(100% at 100% 100%);
-}
-
-.monitor-frame-inner-topright{
-  background: conic-gradient(from 0deg at 0 100%, var(--color-frame-dark), var(--color-frame-mid-dark) 90deg);
-  clip-path: circle(100% at 0% 100%);
-}
-
-.monitor-frame-inner-top{
-  background: linear-gradient(90deg, var(--color-frame-dark) 45%, var(--color-frame-mid-dark), var(--color-frame-dark) 90%);
-}
-
-.monitor-frame-inner-bottomleft{
-  background: conic-gradient(from 180deg at 100% 0, var(--color-frame-mid), var(--color-frame-mid-dark) 90deg);
-  clip-path: circle(100% at 100% 0%);
-}
-
-.monitor-frame-inner-bottomright{
-  background: conic-gradient(from 90deg at 0 0, var(--color-frame-mid-dark), var(--color-frame-mid) 90deg);
-  clip-path: circle(100% at 0% 0%);
-}
-
-.monitor-frame-inner-left, .monitor-frame-inner-right{
-  background: var(--color-frame-mid-dark);
-}
-
-.monitor-frame-inner-bottom{
-  background: linear-gradient(90deg, var(--color-frame-mid) 10%, var(--color-frame-mid-light), var(--color-frame-mid) 55%);
+    linear-gradient(to bottom, white, rgba(250,250,250, 0.0) var(--monitor-frame-top-height) calc(100% - var(--monitor-frame-bottom-height)), rgba(0,0,0, 0.5)),
+    radial-gradient(circle at 0 0, rgba(250,250,250,0.75) 50%, rgba(200,200,200,0.5)),
+    radial-gradient(circle at center, rgba(250,250,250,0.75) 50%, rgba(200,200,200,0.5)),
+    radial-gradient(ellipse at top, rgba(250,250,250,0.75), rgba(150,150,150,0.75)),
+    linear-gradient(to bottom, rgb(250,250,250) 50%, rgb(0,0,0));
+  mix-blend-mode: overlay;
 }
 
 /*  ------------------------------------------------  */
@@ -638,22 +616,33 @@ blockquote p, blockquote blockquote{
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0
+  top:0;
+  image-rendering: pixelated;
+  mix-blend-mode: overlay;
 }
 
-.overlay-noise-blue::after{
-  background-image: url("../images/noise_blue_64.png");
-  image-rendering: pixelated;
-  background-size: 128px;
-  mix-blend-mode: soft-light;
+.overlay-noise-blue-l::after{
+  background-image: url("../images/noise/noise_blue_L64.png");
 }
 
-.overlay-noise-white::after{
-  background-image: url("../images/noise_white_64.png");
-  image-rendering: pixelated;
-  background-size: 128px;
-  mix-blend-mode: soft-light;
+.overlay-noise-blue-rgb::after{
+  background-image: url("../images/noise/noise_blue_RGB64.png");
 }
+
+.overlay-noise-white-l::after{
+  background-image: url("../images/noise/noise_white_L64.png");
+}
+
+.overlay-noise-white-rgb::after{
+  background-image: url("../images/noise/noise_white_RGB64.png");
+}
+.overlay-noise-opacity5::after{ opacity: 5%; }
+.overlay-noise-opacity10::after{ opacity: 10%; }
+.overlay-noise-opacity25::after{ opacity: 25%; }
+.overlay-noise-opacity50::after{ opacity: 50%; }
+.overlay-noise-size64::after{ background-size: 64px; }
+.overlay-noise-size128::after{ background-size: 128px; }
+.overlay-noise-size256::after{ background-size: 256px; }
 
 /*  ------------------------------------------------  */
 /*  @media  */
@@ -669,13 +658,14 @@ blockquote p, blockquote blockquote{
   .body-frame{
     left: 0;
   }
-  .monitor-frame-outer, #threejs-fullscreen-container{
+  #threejs-fullscreen-container{
     left: 0;
     width: 100%;
   }
-  .monitor-frame-inner{
-    left: var(--monitor-frame-overlap);
-    width: calc(100% - 2*var(--monitor-frame-overlap));
+
+  #monitor{
+    left: var(--monitor-frame-padding);
+    width: calc(100% - 2*var(--monitor-frame-padding));
   }
 }
 
