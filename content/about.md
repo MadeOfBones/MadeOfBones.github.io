@@ -9,6 +9,7 @@ Coming soon...
 ## Asset Credits
 
 - IBM VGA font by [VileR](https://int10h.org/oldschool-pc-fonts/)
+- Blue noise texture by [Christoph Peters](https://momentsingraphics.de/BlueNoise.html)
 
 ## Tools and Libraries
 
