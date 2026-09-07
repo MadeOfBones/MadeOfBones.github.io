@@ -1,7 +1,14 @@
 <div class="window code-window" {{- with .Attributes.id }}id="{{ . }}"{{- end }}>
-  <div class="window-title-bar">
-    <div class="window-title-bar-title">
-      {{- with .Attributes.title }}{{ . }}{{- end }}
+  <div class="window-title-bar-container">
+    <div class="svgfilter-layer" style="filter: url(#gradient-map-green);">
+      <div class="svgfilter-layer overlay-noise overlay-noise-white-l overlay-noise-opacity50 overlay-noise-size128" style="filter: url(#posterize-5step);">
+        <div class="svgfilter-layer window-title-bar-background"></div>
+      </div>
+    </div>
+    <div class="window-title-bar">
+      <div class="window-title-bar-title">
+        {{- with .Attributes.title }}{{ . }}{{- end }}
+      </div>
     </div>
   </div>
   <div class="window-toolbar">

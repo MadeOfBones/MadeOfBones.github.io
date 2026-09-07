@@ -1,15 +1,24 @@
 {{ if (.Params.toc) }}
 <div id="toc" class="window">
   <input type="checkbox" id="toc-toggle" checked/>
-  <div class="toc-title window-title-bar">
-    <div class="window-title-bar-title">
-      Content
+  <div class="toc-title-container window-title-bar-container">
+    <div class="svgfilter-layer" style="filter: url(#gradient-map-green);">
+      <div class="svgfilter-layer overlay-noise overlay-noise-white-l overlay-noise-opacity100 overlay-noise-size128" style="filter: url(#posterize-5step);">
+        <div class="svgfilter-layer window-title-bar-background">
+
+        </div>
+      </div>
     </div>
-    <div class="window-title-bar-buttons">
-      <label for="toc-toggle" class="window-title-bar-button">
-        {{ partial "icons/maximize.html" (dict "id" "toc-icon-maximize") }}
-        {{ partial "icons/minimize.html" (dict "id" "toc-icon-minimize") }}
-      </label>
+    <div class="toc-title window-title-bar">
+      <div class="window-title-bar-title">
+        Content
+      </div>
+      <div class="window-title-bar-buttons">
+        <label for="toc-toggle" class="window-title-bar-button">
+          {{ partial "icons/maximize.html" (dict "id" "toc-icon-maximize") }}
+          {{ partial "icons/minimize.html" (dict "id" "toc-icon-minimize") }}
+        </label>
+      </div>
     </div>
   </div>
   <div class="toc-content window-body">

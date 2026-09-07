@@ -168,7 +168,7 @@ Here's a longer one[^bignote].
 
 ## ThreeJS View
 
-{{< threejs-inline-canvas id="test" src="/js/Posts/MarkdownTest/threejs-test.js" title="Test inline treejs container" w="500px" h="500px">}}
+{{< threejs-inline-canvas id="test" src="/js/Posts/MarkdownTest/threejs-test.js" title="Test inline treejs container" w="500px" h="300px">}}
 
 Some text after.
 

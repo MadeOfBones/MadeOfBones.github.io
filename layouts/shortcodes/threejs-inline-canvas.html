@@ -6,24 +6,32 @@
 
 <div class="inline-threejs-window">
   <div class="window">
-    <div class="window-title-bar">
-      <div class="window-title-bar-title">
-        {{ $title }}
+    <div class="window-title-bar-container">
+    <div class="svgfilter-layer" style="filter: url(#gradient-map-green);">
+      <div class="svgfilter-layer overlay-noise overlay-noise-white-l overlay-noise-opacity50 overlay-noise-size128" style="filter: url(#posterize-5step);">
+          <div class="svgfilter-layer window-title-bar-background"></div>
+        </div>
+      </div>
+      <div class="window-title-bar">
+        <div class="window-title-bar-title">
+          {{ $title }}
+        </div>
       </div>
     </div>
-    {{ if and (isset .Params "w") (isset .Params "h")}}
-    <div class="inline-threejs-window-container window-body" style="width: {{ $w }}; height: {{ $h }};">
-    {{ else if (isset .Params "w") }}
-    <div class="inline-threejs-window-container window-body" style="width: {{ $w }};">
-    {{ else if (isset .Params "h") }}
-    <div class="inline-threejs-window-container window-body" style="height: {{ $h }};">
-    {{ else }}
-    <div class="inline-threejs-window-container window-body">
-    {{ end }}
-      <canvas id="threejs-window-canvas-{{ $id }}" class="threejs-window-canvas"></canvas>
+    <div class="window-body">
+      {{ if and (isset .Params "w") (isset .Params "h")}}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="width: {{ $w }}; height: {{ $h }};">
+      {{ else if (isset .Params "w") }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="width: {{ $w }};">
+      {{ else if (isset .Params "h") }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content" style="height: {{ $h }};">
+      {{ else }}
+      <div id="threejs-content-{{ $id }}" class="window-content threejs-content">
+      {{ end }}
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Load the script -->
-<script type="module" src="{{ $src }}"></script>
+<script type="module" src="{{ $src }}" defer></script>
